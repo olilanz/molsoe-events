@@ -1,8 +1,0 @@
-C:\Users\ocl\Source\Repos\src\bin\Debug\netcoreapp1.1\Main.deps.json
-C:\Users\ocl\Source\Repos\src\bin\Debug\netcoreapp1.1\Main.runtimeconfig.json
-C:\Users\ocl\Source\Repos\src\bin\Debug\netcoreapp1.1\Main.runtimeconfig.dev.json
-C:\Users\ocl\Source\Repos\src\bin\Debug\netcoreapp1.1\Main.dll
-C:\Users\ocl\Source\Repos\src\bin\Debug\netcoreapp1.1\Main.pdb
-C:\Users\ocl\Source\Repos\src\obj\Debug\netcoreapp1.1\Main.AssemblyInfo.cs
-C:\Users\ocl\Source\Repos\src\obj\Debug\netcoreapp1.1\Main.dll
-C:\Users\ocl\Source\Repos\src\obj\Debug\netcoreapp1.1\Main.pdb

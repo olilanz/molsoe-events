@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\ocl\\.nuget\\packages",
-      "C:\\Users\\ocl\\.dotnet\\NuGetFallbackFolder"
-    ]
-  }
-}
