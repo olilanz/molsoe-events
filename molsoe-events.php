@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              http://www.gigglingbits.com
- * @since             1.0.0
+ * @since             0.0.1
  * @package           Molsoe_Events
  *
  * @wordpress-plugin
  * Plugin Name:       Molsø Events
- * Plugin URI:        https://github.com/olilanz/molsoe-events/tree/master/molsoe-events
+ * Plugin URI:        https://github.com/olilanz/molsoe-events
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           0.0.1
  * Author:            Oliver Lanz
  * Author URI:        http://www.gigglingbits.com
  * License:           GPL-2.0+
