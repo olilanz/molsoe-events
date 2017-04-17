@@ -1,0 +1,40 @@
+[
+	{
+		"id": "HR001",
+		"name": "Kollegacoaching",
+		"cost": "4.990 kr. ekskl. moms",
+		"occurances": [
+			{
+				"time": "30. november 2017 kl. 9-16",
+				"place": "Bautahøj Kursuscenter, Jægerspris"
+			},
+			{
+				"time": "14. december 2017 kl. 9-16",
+				"place": "Bautahøj Kursuscenter, Jægerspris"
+			},
+			{
+				"time": "12. januar 2018 kl. 9-16",
+				"place": "Axelborg, København"
+			}
+		]
+	},
+	{
+		"id": "LD001",
+		"name": "Hjernevidenskab og Ledelse",
+		"cost": "9.600 kr. ekskl. moms",
+		"occurances": [
+			{
+				"time": "30. juni 2017 kl. 9-16",
+				"place": "Bautahøj Kursuscenter, Jægerspris"
+			},
+			{
+				"time": "14. juli 2017 kl. 9-16",
+				"place": "Bautahøj Kursuscenter, Jægerspris"
+			},
+			{
+				"time": "12. september 2018 kl. 9-16",
+				"place": "Axelborg, København"
+			}
+		]
+	}
+]
