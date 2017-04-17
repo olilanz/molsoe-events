@@ -3,30 +3,14 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       http://www.gigglingbits.com
- * @since      1.0.0
- *
- * @package    Molsoe_Events
- * @subpackage Molsoe_Events/admin
- */
-
-/**
- * The admin-specific functionality of the plugin.
- *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package    Molsoe_Events
- * @subpackage Molsoe_Events/admin
- * @author     Oliver Lanz <oliver.lanz@gigglingbits.com>
  */
 class Molsoe_Events_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
 	private $plugin_name;
@@ -34,8 +18,6 @@ class Molsoe_Events_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
-	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
 	private $version;
@@ -43,7 +25,6 @@ class Molsoe_Events_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
@@ -56,8 +37,6 @@ class Molsoe_Events_Admin {
 
 	/**
 	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 
@@ -79,8 +58,6 @@ class Molsoe_Events_Admin {
 
 	/**
 	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 

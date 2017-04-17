@@ -18,11 +18,6 @@
  *
  * For more information, see the following discussion:
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
- *
- * @link       http://www.gigglingbits.com
- * @since      1.0.0
- *
- * @package    Molsoe_Events
  */
 
 // If uninstall not called from WordPress, then exit.

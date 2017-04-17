@@ -1,17 +1,6 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              http://www.gigglingbits.com
- * @since             0.0.1
- * @package           Molsoe_Events
- *
  * @wordpress-plugin
  * Plugin Name:       Molsø Events
  * Plugin URI:        https://github.com/olilanz/molsoe-events
@@ -32,7 +21,6 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-molsoe-events-activator.php
  */
 function activate_molsoe_events() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-molsoe-events-activator.php';
@@ -41,7 +29,6 @@ function activate_molsoe_events() {
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-molsoe-events-deactivator.php
  */
 function deactivate_molsoe_events() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-molsoe-events-deactivator.php';
@@ -63,13 +50,10 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-molsoe-events.php';
  * Since everything within the plugin is registered via hooks,
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
- *
- * @since    1.0.0
  */
 function run_molsoe_events() {
-
 	$plugin = new Molsoe_Events();
 	$plugin->run();
-
 }
+
 run_molsoe_events();
