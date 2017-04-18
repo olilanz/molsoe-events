@@ -8,13 +8,16 @@
  */
 class Molsoe_Events_Public {
 
+	const AJAX_SECRET = 'Yertle the Turtle';
+
 	private $plugin_name;
 	private $version;
+
 
 	public function __construct( $plugin_name, $version ) {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-	}
+	} 
 
 	public function enqueue_styles() {
 	 	//Register the stylesheets for the public-facing side of the site.
@@ -24,6 +27,15 @@ class Molsoe_Events_Public {
 	public function enqueue_scripts() {
 	 	// Register the JavaScript for the public-facing side of the site.
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, false );
+		wp_localize_script( $this->plugin_name, 'MyAjax', array(
+			'ajaxurl' => admin_url( 'admin-ajax.php' ),
+			'securitytoken' => wp_create_nonce( self::AJAX_SECRET ),
+			'formname' => $this->plugin_name . "-form"
+		));
+	}
+
+	public function receive_form() {
+		check_ajax_referer( self::AJAX_SECRET, 'securitytoken' );
 	}
 
 	public function init_shortcodes() {
@@ -52,8 +64,8 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		$content =  '<div class="' . $this->plugin_name . '">';
-		$content .= '  <form action="/action_page.php">';
+		$content =  '<div id="' . $this->plugin_name . '-container">';
+		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
 		$content .= '    <hr>';
 		$content .= '    <h3>Kursus detaljer:</h3>';
