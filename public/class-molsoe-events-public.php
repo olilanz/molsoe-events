@@ -26,7 +26,7 @@ class Molsoe_Events_Public {
 
 	public function enqueue_scripts() {
 	 	// Register the JavaScript for the public-facing side of the site.
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, true );
 		wp_localize_script( $this->plugin_name, 'MyAjax', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'securitytoken' => wp_create_nonce( self::AJAX_SECRET ),
