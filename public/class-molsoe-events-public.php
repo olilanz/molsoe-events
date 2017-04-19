@@ -34,14 +34,14 @@ class Molsoe_Events_Public {
 		// set default values
 		$atts = shortcode_atts( array(
 			'view'     => 'registration',
-			'eventid'  => '',
+			'id'  => '',
 			'debug'	   => false,
 		), $atts );
 
 		// do param testing
 		$view  = intval( $atts['view'] );
 		$debug = boolval( $atts['debug'] );
-		$eventid = strval( $atts['eventid'] );
+		$eventid = strval( $atts['id'] );
 
 		// prepping the data
 		$data = $this->get_data();
