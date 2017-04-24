@@ -1,23 +1,26 @@
-(function( $ ) {
+(function( $, ajaxhelper ) {
 	'use strict';
 
-	var formtag = "#" + MyAjax.formname;
-	$(formtag).submit(function($) {
-		var form = $(formtag);
+	$(document).ready(function() { 
+		var formtag = "#" + ajaxhelper.formname;
+		$(formtag).submit(function(event) {
+        	event.preventDefault(); // stop form from submitting normally
 
-		// disable submit button
-		$.preventDefault();
-		form.find('.submit').val('Working...');
+			var form = $(formtag);
+			form.find('.submit').val('Working...');
 
-		var data = {
-			action: 'receive_form',
-			securitytoken: MyAjax.security,
-			payload: form.serialize()
-		};
+			var data = {
+				action: 'receive_form',
+				securitytoken: ajaxhelper.securitytoken,
+				payload: form.serializeArray()
+			};
 
-		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
-		$.post(MyAjax.ajaxurl, data, function(response) {
-			alert('Got this from the server: ' + response);
+			// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+			$.post(ajaxhelper.ajaxurl, data, function(response) {
+				alert('Got this from the server: (' + response.id + '/' + response.message + ')');
+			});
+
+			form.find('.submit').val('Submitted :-)');
 		});
 	});
-})( jQuery );
+})( jQuery, MyAjax );

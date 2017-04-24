@@ -26,7 +26,7 @@ class Molsoe_Events_Public {
 
 	public function enqueue_scripts() {
 	 	// Register the JavaScript for the public-facing side of the site.
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, false );
 		wp_localize_script( $this->plugin_name, 'MyAjax', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'securitytoken' => wp_create_nonce( self::AJAX_SECRET ),
@@ -35,7 +35,20 @@ class Molsoe_Events_Public {
 	}
 
 	public function receive_form() {
-		check_ajax_referer( self::AJAX_SECRET, 'securitytoken' );
+		$nonce = $_POST['securitytoken'];
+		if (empty($_POST) || !wp_verify_nonce($nonce, self::AJAX_SECRET)) {
+			die('Security check');
+		}
+
+		$result = array(
+			'message' => 'Saved..',
+			'id' => 123
+		);
+
+		wp_send_json($result);
+
+		//check_ajax_referer( self::AJAX_SECRET, 'securitytoken' );
+		//wp_die();
 	}
 
 	public function init_shortcodes() {
@@ -84,12 +97,12 @@ class Molsoe_Events_Public {
 
 		$content .= '    <hr>';
 		$content .= '    <h3>Person detaljer:</h3>';
-		$content .= '    Navn: <input type="text" required name="name"><br>';
-		$content .= '    Stilling: <input type="text" required name="position"><br>';
-		$content .= '    Firma: <input type="text" required name="company"><br>';
-		$content .= '    Adresse: <input type="text" required name="address"><br>';
-		$content .= '    Tlf: <input type="tel" required name="phone"><br>';
-		$content .= '    Mail: <input type="email" required name="mail"><br>';
+		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
+		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
+		$content .= '    Firma: <input type="text" required name="company" value="a"><br>';
+		$content .= '    Adresse: <input type="text" required name="address" value="a"><br>';
+		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
+		$content .= '    Mail: <input type="email" required name="mail" value="a@a"><br>';
 		$content .= '    <hr>';
 		$content .= '    <input type="submit" value="Submit">';
 		$content .= '  </form>';
