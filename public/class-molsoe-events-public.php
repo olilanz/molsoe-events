@@ -34,17 +34,33 @@ class Molsoe_Events_Public {
 		));
 	}
 
+	public function send_mail($payload) {
+		$to = 'olilanz@mac.com';
+		$subject = 'Course Booking';
+		$body = '<h1>Booking: ' . $payload['course'] . '</h1>';
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+
+		wp_mail( $to, $subject, $body, $headers );
+	}
+
+	public function save_file($payload) {
+		$file = plugin_dir_path( __FILE__ ) . '../data/bookings.txt';
+		file_put_contents($file, var_export($payload, true), FILE_APPEND);
+	}
+
 	public function receive_form() {
 		$nonce = $_POST['securitytoken'];
 		if (empty($_POST) || !wp_verify_nonce($nonce, self::AJAX_SECRET)) {
 			die('Security check');
 		}
 
-		$result = array(
-			'message' => 'Saved..',
-			'id' => 123
-		);
+		$payload = $_POST['payload'];
+		$this->save_file($payload);
+		$this->send_mail($payload);
 
+		$result = array(
+			'message' => var_export($payload, true)
+		);
 		wp_send_json($result);
 
 		//check_ajax_referer( self::AJAX_SECRET, 'securitytoken' );
