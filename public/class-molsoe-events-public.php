@@ -27,10 +27,12 @@ class Molsoe_Events_Public {
 	public function enqueue_scripts() {
 	 	// Register the JavaScript for the public-facing side of the site.
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/molsoe-events-public.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( $this->plugin_name, 'MyAjax', array(
+		wp_localize_script( $this->plugin_name, 'MolsoeParams', array(
 			'ajaxurl' => admin_url( 'admin-ajax.php' ),
 			'securitytoken' => wp_create_nonce( self::AJAX_SECRET ),
-			'formname' => $this->plugin_name . "-form"
+			'formquery' => '#' . $this->plugin_name . "-form",
+			'formcontainerquery' => '#' . $this->plugin_name . "-container",
+			'formbuttonquery' => 'a[class*=avia-button]'
 		));
 	}
 
@@ -93,7 +95,9 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		$content =  '<div id="' . $this->plugin_name . '-container">';
+		$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD</span></a>';
+
+		$content .=  '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
 		$content .= '    <hr>';
