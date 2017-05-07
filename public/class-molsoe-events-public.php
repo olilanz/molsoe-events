@@ -95,8 +95,11 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		#$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
 		$content = '';
+
+		if ($debug == true) {
+			$content .=  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
+		}
 		
 		$content .= '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
@@ -120,6 +123,8 @@ class Molsoe_Events_Public {
 		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
 		$content .= '    Firma: <input type="text" required name="company" value="a"><br>';
 		$content .= '    Adresse: <input type="text" required name="address" value="a"><br>';
+		$content .= '    Postnummer: <input type="text" required name="postal-code" value="a"><br>';
+		$content .= '    By: <input type="text" required name="city" value="a"><br>';
 		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
 		$content .= '    Mail: <input type="email" required name="mail" value="a@a"><br>';
 
