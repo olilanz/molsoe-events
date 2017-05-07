@@ -106,15 +106,15 @@ class Molsoe_Events_Public {
 
 		$content .= '    <hr>';
 
-		$content .= '  <div id="course">';
+		$content .= '    <div id="course">';
 		$content .= $this->get_course_form_fields($event->name, $event->cost, $event->occurances);
-		$content .= '  </div>';
-		$content .= '  <div id="person">';
+		$content .= '    </div>';
+		$content .= '    <div id="person">';
 		$content .= $this->get_person_form_fields();
-		$content .= '  </div>';
-		$content .= '  <div id="payment">';
+		$content .= '    </div>';
+		$content .= '    <div id="payment">';
 		$content .= $this->get_payment_form_fields();
-		$content .= '  </div>';
+		$content .= '  	 </div>';
 
 		$content .= '    <hr>';
 
@@ -144,7 +144,6 @@ class Molsoe_Events_Public {
 	private function get_person_form_fields() {
 		$content = '';
 
-		$content .= '  <div id="person">';
 		$content .= '    <h3>Person detaljer:</h3>';
 		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
 		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
@@ -161,7 +160,6 @@ class Molsoe_Events_Public {
 	private function get_payment_form_fields() {
 		$content = '';
 
-		$content .= '  <div id="payment">';
 		$content .= '    <h3>Betalingsmetode:</h3>';
 		$content .= '    <input type="radio" required name="paymentmethod" value="invoice">Faktura<br>';
 		$content .= '    <input type="radio" required checked name="paymentmethod" value="online">Online kortbetaling<br>';
