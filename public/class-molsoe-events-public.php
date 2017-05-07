@@ -95,7 +95,7 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD</span></a>';
+		$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD MED SMIL :-)</span></a>';
 
 		$content .=  '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
