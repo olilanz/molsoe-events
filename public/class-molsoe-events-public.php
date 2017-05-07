@@ -106,9 +106,15 @@ class Molsoe_Events_Public {
 
 		$content .= '    <hr>';
 
+		$content .= '  <div id="course">';
 		$content .= $this->get_course_form_fields($event->name, $event->cost, $event->occurances);
+		$content .= '  </div>';
+		$content .= '  <div id="person">';
 		$content .= $this->get_person_form_fields();
+		$content .= '  </div>';
+		$content .= '  <div id="payment">';
 		$content .= $this->get_payment_form_fields();
+		$content .= '  </div>';
 
 		$content .= '    <hr>';
 
@@ -136,7 +142,7 @@ class Molsoe_Events_Public {
 		foreach ($occurances as $o) {
 			$content .= '      <option value="' . $o->place . '">' . $o->place . '</option>';
 		}
-		$content .= '    </select><br>';
+		$content .= '    </select>';
 
 		return $content;
 	}
@@ -144,6 +150,7 @@ class Molsoe_Events_Public {
 	private function get_person_form_fields() {
 		$content = '';
 
+		$content .= '  <div id="person">';
 		$content .= '    <h3>Person detaljer:</h3>';
 		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
 		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
@@ -152,7 +159,7 @@ class Molsoe_Events_Public {
 		$content .= '    Postnummer: <input type="text" required name="postal-code" value="a"><br>';
 		$content .= '    By: <input type="text" required name="city" value="a"><br>';
 		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
-		$content .= '    Mail: <input type="email" required name="mail" value="a@a"><br>';
+		$content .= '    Mail: <input type="email" required name="mail" value="a@a">';
 
 		return $content;
 	}
@@ -160,13 +167,14 @@ class Molsoe_Events_Public {
 	private function get_payment_form_fields() {
 		$content = '';
 
+		$content .= '  <div id="payment">';
 		$content .= '    <h3>Betalingsmetode:</h3>';
 		$content .= '    <input type="radio" required name="paymentmethod" value="invoice">Faktura<br>';
 		$content .= '    <input type="radio" required checked name="paymentmethod" value="online">Online kortbetaling<br>';
 		$content .= '    Kortnummer: <input type="text" required name="card-number" value="1234-2345-3456-4567"><br>';
 		$content .= '    Udløbsmåned: <input type="number" required name="card-expiry-month" value=""><br>';
 		$content .= '    Udløbsår: <input type="number" required name="card-expiry-year" value=""><br>';
-		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value=""><br>';
+		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value="">';
 
 		return $content;
 	}
