@@ -13,7 +13,7 @@ class Molsoe_Events {
 
 	public function __construct() {
 		$this->plugin_name = 'molsoe-events';
-		$this->version = '0.0.1';
+		$this->version = '0.0.2';
 
 		$this->loader = $this->create_loader();
 		$this->set_locale();
