@@ -37,7 +37,6 @@ class Molsoe_Events_Public {
 	}
 
 	public function send_mail($payload) {
-		$to = 'olilanz@mac.com';
 		$subject = 'Course Booking';
 
 		$body = '<h1>Booking: ' . $payload['course'] . '</h1>';
@@ -45,7 +44,8 @@ class Molsoe_Events_Public {
 
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 
-		wp_mail( $to, $subject, $body, $headers );
+		wp_mail('olilanz@mac.com', $subject, $body, $headers);
+		wp_mail('anne@annemollerup.dk', $subject, $body, $headers);
 	}
 
 	public function save_file($payload) {
