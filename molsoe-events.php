@@ -5,7 +5,7 @@
  * Plugin Name:       Molsø Events
  * Plugin URI:        https://github.com/olilanz/molsoe-events
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           0.0.2
+ * Version:           0.0.3
  * Author:            Oliver Lanz
  * Author URI:        http://www.gigglingbits.com
  * License:           GPL-2.0+
