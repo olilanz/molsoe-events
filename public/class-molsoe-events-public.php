@@ -67,9 +67,6 @@ class Molsoe_Events_Public {
 			'message' => var_export($payload, true)
 		);
 		wp_send_json($result);
-
-		//check_ajax_referer( self::AJAX_SECRET, 'securitytoken' );
-		//wp_die();
 	}
 
 	public function init_shortcodes() {
@@ -98,9 +95,10 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
+		#$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
+		$content = '';
 		
-		$content .=  '<div id="' . $this->plugin_name . '-container">';
+		$content .= '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
 		$content .= '    <h3>Kursus detaljer:</h3>';
@@ -133,9 +131,9 @@ class Molsoe_Events_Public {
 		$content .= '    Udløbsår: <input type="number" required name="card-expiry-year" value=""><br>';
 		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value=""><br>';
 
-		$content .= '    <h3>Betingelser:</h3>';
-		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
 		$content .= '    <hr>';
+
+		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
 		$content .= '    <input type="submit" value="Submit">';
 
 		$content .= '  </form>';
