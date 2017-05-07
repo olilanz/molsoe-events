@@ -104,19 +104,45 @@ class Molsoe_Events_Public {
 		$content .= '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
+		$content .= '    <hr>';
+
+		$content .= $this->get_course_form_fields($event->name, $event->cost, $event->occurances);
+		$content .= $this->get_person_form_fields();
+		$content .= $this->get_payment_form_fields();
+
+		$content .= '    <hr>';
+
+		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
+		$content .= '    <input type="submit" value="Submit">';
+
+		$content .= '  </form>';
+		$content .= '</div>';
+
+		return $content;
+	}
+
+	private function get_course_form_fields($coursename, $cost, $occurances) {
+		$content = '';
+
 		$content .= '    <h3>Kursus detaljer:</h3>';
-		$content .= '    Kursus: <input type="text" name="course" readonly value="' . $event->name . '"><br>';
-		$content .= '    Pris: <input type="text" name="event-date" readonly value="' . $event->cost . '"><br>';
+		$content .= '    Kursus: <input type="text" name="course" readonly value="' . $coursename . '"><br>';
+		$content .= '    Pris: <input type="text" name="event-date" readonly value="' . $cost . '"><br>';
 		$content .= '    Dato: <select name="event-date">';
-		foreach ($event->occurances as $o) {
+		foreach ($occurances as $o) {
 			$content .= '      <option value="' . $o->time . '">' . $o->time . '</option>';
 		}
 		$content .= '    </select><br>';
 		$content .= '    Kursus sted: <select name="event-place">';
-		foreach ($event->occurances as $o) {
+		foreach ($occurances as $o) {
 			$content .= '      <option value="' . $o->place . '">' . $o->place . '</option>';
 		}
 		$content .= '    </select><br>';
+
+		return $content;
+	}
+
+	private function get_person_form_fields() {
+		$content = '';
 
 		$content .= '    <h3>Person detaljer:</h3>';
 		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
@@ -128,6 +154,12 @@ class Molsoe_Events_Public {
 		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
 		$content .= '    Mail: <input type="email" required name="mail" value="a@a"><br>';
 
+		return $content;
+	}
+
+	private function get_payment_form_fields() {
+		$content = '';
+
 		$content .= '    <h3>Betalingsmetode:</h3>';
 		$content .= '    <input type="radio" required name="paymentmethod" value="invoice">Faktura<br>';
 		$content .= '    <input type="radio" required checked name="paymentmethod" value="online">Online kortbetaling<br>';
@@ -135,14 +167,6 @@ class Molsoe_Events_Public {
 		$content .= '    Udløbsmåned: <input type="number" required name="card-expiry-month" value=""><br>';
 		$content .= '    Udløbsår: <input type="number" required name="card-expiry-year" value=""><br>';
 		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value=""><br>';
-
-		$content .= '    <hr>';
-
-		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
-		$content .= '    <input type="submit" value="Submit">';
-
-		$content .= '  </form>';
-		$content .= '</div>';
 
 		return $content;
 	}
