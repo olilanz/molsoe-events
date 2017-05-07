@@ -32,7 +32,7 @@ class Molsoe_Events_Public {
 			'securitytoken' => wp_create_nonce( self::AJAX_SECRET ),
 			'formquery' => '#' . $this->plugin_name . "-form",
 			'formcontainerquery' => '#' . $this->plugin_name . "-container",
-			'formbuttonquery' => 'a[class*=avia-button]'
+			'formbuttonquery' => 'a[class*=avia-button][href=""]'
 		));
 	}
 
@@ -95,8 +95,8 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		// $content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD MED LILLE SMIL :-)</span></a>';
-
+		#$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
+		
 		$content .=  '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
