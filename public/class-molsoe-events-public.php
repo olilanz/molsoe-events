@@ -98,12 +98,11 @@ class Molsoe_Events_Public {
 			}
 		}
 
-		#$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
+		$content =  '<a href="" class="avia-button  avia-icon_select-no avia-color-teal avia-size-large avia-position-center " target="_blank"><span class="avia_iconbox_title">TILMELD (blank) :-)</span></a>';
 		
 		$content .=  '<div id="' . $this->plugin_name . '-container">';
 		$content .= '  <form id="' . $this->plugin_name . '-form" method="post">';
 
-		$content .= '    <hr>';
 		$content .= '    <h3>Kursus detaljer:</h3>';
 		$content .= '    Kursus: <input type="text" name="course" readonly value="' . $event->name . '"><br>';
 		$content .= '    Pris: <input type="text" name="event-date" readonly value="' . $event->cost . '"><br>';
@@ -118,7 +117,6 @@ class Molsoe_Events_Public {
 		}
 		$content .= '    </select><br>';
 
-		$content .= '    <hr>';
 		$content .= '    <h3>Person detaljer:</h3>';
 		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
 		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
@@ -126,8 +124,20 @@ class Molsoe_Events_Public {
 		$content .= '    Adresse: <input type="text" required name="address" value="a"><br>';
 		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
 		$content .= '    Mail: <input type="email" required name="mail" value="a@a"><br>';
+
+		$content .= '    <h3>Betalingsmetode:</h3>';
+		$content .= '    <input type="radio" required name="paymentmethod" value="invoice">Faktura<br>';
+		$content .= '    <input type="radio" required checked name="paymentmethod" value="online">Online kortbetaling<br>';
+		$content .= '    Kortnummer: <input type="text" required name="card-number" value="1234-2345-3456-4567"><br>';
+		$content .= '    Udløbsmåned: <input type="number" required name="card-expiry-month" value=""><br>';
+		$content .= '    Udløbsår: <input type="number" required name="card-expiry-year" value=""><br>';
+		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value=""><br>';
+
+		$content .= '    <h3>Betingelser:</h3>';
+		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
 		$content .= '    <hr>';
 		$content .= '    <input type="submit" value="Submit">';
+
 		$content .= '  </form>';
 		$content .= '</div>';
 
