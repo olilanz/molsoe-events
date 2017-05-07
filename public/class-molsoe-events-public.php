@@ -133,16 +133,10 @@ class Molsoe_Events_Public {
 		$content .= '    <h3>Kursus detaljer:</h3>';
 		$content .= '    Kursus: <input type="text" name="course" readonly value="' . $coursename . '"><br>';
 		$content .= '    Pris: <input type="text" name="event-date" readonly value="' . $cost . '"><br>';
-		$content .= '    Dato: <select name="event-date">';
 		foreach ($occurances as $o) {
-			$content .= '      <option value="' . $o->time . '">' . $o->time . '</option>';
+			$otext = $o->time . ', ' . $o->place;
+			$content .= '    <input type="radio" required name="occurance" value="$otext">' . $otext . '<br>';
 		}
-		$content .= '    </select><br>';
-		$content .= '    Kursus sted: <select name="event-place">';
-		foreach ($occurances as $o) {
-			$content .= '      <option value="' . $o->place . '">' . $o->place . '</option>';
-		}
-		$content .= '    </select>';
 
 		return $content;
 	}
