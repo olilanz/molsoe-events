@@ -107,7 +107,7 @@ class Molsoe_Events_Public {
 		$content .= '    <hr>';
 
 		$content .= '    <div id="course">';
-		$content .= $this->get_course_form_fields($event->name, $event->cost, $event->occurances);
+		$content .= $this->get_course_form_fields($event);
 		$content .= '    </div>';
 		$content .= '    <div id="person">';
 		$content .= $this->get_person_form_fields();
@@ -127,16 +127,15 @@ class Molsoe_Events_Public {
 		return $content;
 	}
 
-	private function get_course_form_fields($coursename, $cost, $occurances) {
+	private function get_course_form_fields($event) {
 		$content = '';
 
 		$content .= '    <h3>Kursus detaljer:</h3>';
-		$content .= '    Kursus: <input type="text" name="course" readonly value="' . $coursename . '"><br>';
-		$content .= '    Pris: <input type="text" name="event-date" readonly value="' . $cost . '"><br>';
-		foreach ($occurances as $o) {
-			$otext = $o->time . ', ' . $o->place;
-			$content .= '    <input type="radio" required name="occurance" value="$otext">' . $otext . '<br>';
-		}
+		$content .= '    Kursus: <input type="text" name="event-name" readonly value="' . $event->name . '"><br>';
+		$content .= '    Varighed: <input type="text" name="event-duration" readonly value="' . $event->duration . '"><br>';
+		$content .= '    Dato: <input type="text" name="event-date" readonly value="' . $event->time . '"><br>';
+		$content .= '    Sted: <input type="text" name="event-place" readonly value="' . $event->place . '"><br>';
+		$content .= '    Pris: <input type="text" name="event-cost" readonly value="' . $event->cost . '"><br>';
 
 		return $content;
 	}
