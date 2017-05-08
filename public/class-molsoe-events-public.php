@@ -127,11 +127,11 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="course">';
 		$content .= '    <legend>Kursus detaljer:</legend>';
-		$content .= '    <label for="event-name">Kursus:</label><input type="text" id="event-name" readonly value="' . $event->name . '"><br>';
-		$content .= '    <label for="event-duration">Varighed:</label><input type="text" id="event-duration" readonly value="' . $event->duration . '"><br>';
-		$content .= '    <label for="event-date">Dato:</label><input type="text" id="event-date" readonly value="' . $event->time . '"><br>';
-		$content .= '    <label for="event-place">Sted:</label><input type="text" id="event-place" readonly value="' . $event->place . '"><br>';
-		$content .= '    <label for="event-cost">Pris:</label><input type="text" id="event-cost" readonly value="' . $event->cost . '"><br>';
+		$content .= '    <label for="event-name">Kursus:</label><input type="text" id="event-name" readonly value="' . $event->name . '">';
+		$content .= '    <label for="event-duration">Varighed:</label><input type="text" id="event-duration" readonly value="' . $event->duration . '">';
+		$content .= '    <label for="event-date">Dato:</label><input type="text" id="event-date" readonly value="' . $event->time . '">';
+		$content .= '    <label for="event-place">Sted:</label><input type="text" id="event-place" readonly value="' . $event->place . '">';
+		$content .= '    <label for="event-cost">Pris:</label><input type="text" id="event-cost" readonly value="' . $event->cost . '">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -142,13 +142,13 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="person">';
 		$content .= '    <legend>Person detaljer:</legend>';
-		$content .= '    <label for="person-name">Navn:</label><input type="text" required id="person-name" value=""><br>';
-		$content .= '    <label for="person-position">Stilling:</label><input type="text" required id="person-position" value=""><br>';
-		$content .= '    <label for="person-company">Firma:</label><input type="text" required id="person-company" value=""><br>';
-		$content .= '    <label for="person-address">Adresse:</label><input type="text" required id="person-address" value=""><br>';
-		$content .= '    <label for="person-postalcode">Postnummer:</label><input type="text" required id="person-postalcode" value=""><br>';
-		$content .= '    <label for="person-city">By:</label><input type="text" required id="person-city" value=""><br>';
-		$content .= '    <label for="person-phone">Tlf:</label><input type="tel" required id="person-phone" value=""><br>';
+		$content .= '    <label for="person-name">Navn:</label><input type="text" required id="person-name" value="">';
+		$content .= '    <label for="person-position">Stilling:</label><input type="text" required id="person-position" value="">';
+		$content .= '    <label for="person-company">Firma:</label><input type="text" required id="person-company" value="">';
+		$content .= '    <label for="person-address">Adresse:</label><input type="text" required id="person-address" value="">';
+		$content .= '    <label for="person-postalcode">Postnummer:</label><input type="text" required id="person-postalcode" value="">';
+		$content .= '    <label for="person-city">By:</label><input type="text" required id="person-city" value="">';
+		$content .= '    <label for="person-phone">Tlf:</label><input type="tel" required id="person-phone" value="">';
 		$content .= '    <label for="person-mail">Mail:</label><input type="email" required id="person-mail" value="">';
 		$content .= '  </fieldset>';
 
@@ -160,8 +160,8 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="paymentmethod">';
 		$content .= '    <legend>Betalingsmetode:</legend>';
-		$content .= '    <label for="payment-method-invoice">Faktura:</label><input type="radio" required name="payment-method" id="payment-method-invoice" value="invoice"><br>';
-		$content .= '    <label for="payment-method-online">Online kortbetaling</label><input type="radio" required checked name="payment-method" id="payment-method-online" value="online"><br>';
+		$content .= '    <label for="payment-method-invoice">Faktura:</label><input type="radio" required name="payment-method" id="payment-method-invoice" value="invoice">';
+		$content .= '    <label for="payment-method-online">Online kortbetaling</label><input type="radio" required checked name="payment-method" id="payment-method-online" value="online">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -172,9 +172,9 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="paymentinfo">';
 		$content .= '    <legend>Kortoplysninger:</legend>';
-		$content .= '    <label for="payment-card-number">Kortnummer:</label><input type="text" required id="payment-card-number" value=""><br>';
-		$content .= '    <label for="payment-card-expiry-month">Udløbsmåned:</label><input type="number" required id="payment-card-expiry-month" value=""><br>';
-		$content .= '    <label for="payment-card-expiry-year">Udløbsår:</label><input type="number" required id="payment-card-expiry-year" value=""><br>';
+		$content .= '    <label for="payment-card-number">Kortnummer:</label><input type="text" required id="payment-card-number" value="">';
+		$content .= '    <label for="payment-card-expiry-month">Udløbsmåned:</label><input type="number" required id="payment-card-expiry-month" value="">';
+		$content .= '    <label for="payment-card-expiry-year">Udløbsår:</label><input type="number" required id="payment-card-expiry-year" value="">';
 		$content .= '    <label for="payment-card-seurity-code">Sikkerhedskode:</label><input type="number" required id="payment-card-seurity-code" value="">';
 		$content .= '  </fieldset>';
 
