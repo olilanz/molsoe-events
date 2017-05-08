@@ -144,14 +144,14 @@ class Molsoe_Events_Public {
 		$content = '';
 
 		$content .= '    <h3>Person detaljer:</h3>';
-		$content .= '    Navn: <input type="text" required name="name" value="a"><br>';
-		$content .= '    Stilling: <input type="text" required name="position" value="a"><br>';
-		$content .= '    Firma: <input type="text" required name="company" value="a"><br>';
-		$content .= '    Adresse: <input type="text" required name="address" value="a"><br>';
-		$content .= '    Postnummer: <input type="text" required name="postal-code" value="a"><br>';
-		$content .= '    By: <input type="text" required name="city" value="a"><br>';
-		$content .= '    Tlf: <input type="tel" required name="phone" value="a"><br>';
-		$content .= '    Mail: <input type="email" required name="mail" value="a@a">';
+		$content .= '    Navn: <input type="text" required name="name" value=""><br>';
+		$content .= '    Stilling: <input type="text" required name="position" value=""><br>';
+		$content .= '    Firma: <input type="text" required name="company" value=""><br>';
+		$content .= '    Adresse: <input type="text" required name="address" value=""><br>';
+		$content .= '    Postnummer: <input type="text" required name="postal-code" value=""><br>';
+		$content .= '    By: <input type="text" required name="city" value=""><br>';
+		$content .= '    Tlf: <input type="tel" required name="phone" value=""><br>';
+		$content .= '    Mail: <input type="email" required name="mail" value="">';
 
 		return $content;
 	}
@@ -162,7 +162,7 @@ class Molsoe_Events_Public {
 		$content .= '    <h3>Betalingsmetode:</h3>';
 		$content .= '    <input type="radio" required name="paymentmethod" value="invoice">Faktura<br>';
 		$content .= '    <input type="radio" required checked name="paymentmethod" value="online">Online kortbetaling<br>';
-		$content .= '    Kortnummer: <input type="text" required name="card-number" value="1234-2345-3456-4567"><br>';
+		$content .= '    Kortnummer: <input type="text" required name="card-number" value=""><br>';
 		$content .= '    Udløbsmåned: <input type="number" required name="card-expiry-month" value=""><br>';
 		$content .= '    Udløbsår: <input type="number" required name="card-expiry-year" value=""><br>';
 		$content .= '    Sikkerhedskode: <input type="number" required name="card-seurity-code" value="">';
