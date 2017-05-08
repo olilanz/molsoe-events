@@ -16,7 +16,20 @@
 			return false;
 		});
 
+		$(mparams.formquery).find('fieldset#paymentmethod').find('input:radio[name="paymentmethod"]').change(
+			function () {
+			if (this.checked && this.value == 'online') {
+				$(mparams.formquery).find('fieldset#paymentinfo').fadeIn("fast");		
+			}
+			if (this.checked && this.value != 'online') {
+				$(mparams.formquery).find('fieldset#paymentinfo').fadeOut("fast");		
+			}
+		});
+
+		// initialize the form 
 		$(mparams.formquery).hide();
+		$(mparams.formquery).find('fieldset#paymentinfo').hide();
+		$(mparams.formquery).find('fieldset#paymentmethod').find('input#paymentmethod\\.invoice').attr("checked", true);
 	});
 
 	function showFormHandler(formcontainer) {
