@@ -20,7 +20,8 @@
 	});
 
 	function showFormHandler(formcontainer) {
-		$(mparams.formquery).toggle();
+		//$(mparams.formquery).toggle();
+		$(mparams.formquery).fadeToggle("fast");
 	}
 
 	function submitFormHandler(event) {
