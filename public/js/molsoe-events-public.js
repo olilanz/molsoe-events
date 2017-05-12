@@ -33,7 +33,6 @@
 	});
 
 	function showFormHandler(formcontainer) {
-		//$(mparams.formquery).toggle();
 		$(mparams.formquery).fadeToggle("fast");
 	}
 
@@ -41,7 +40,8 @@
 		event.preventDefault(); // stop form from submitting normally
 
 		var form = $(mparams.formquery);
-		form.find('.submit').val('Working...');
+		//form.find('.submit').val('Working...');
+		//form[0].checkValidity();
 
 		var formdata = getFormData(form);
 		var data = {
@@ -51,10 +51,12 @@
 		};
 
 		$.post(mparams.ajaxurl, data, function(response) {
-			alert('Got this from the server: (' + response.id + '/' + response.message + ')');
+			if (response.status == 'ok') {
+				alert('All good: (' + JSON.stringify(response) + ')');
+			} else {
+				alert('Error: (' + JSON.stringify(response) + ')');
+			}
 		});
-
-		form.find('.submit').val('Submitted :-)');		
 	}
 
 	function getFormData($form){

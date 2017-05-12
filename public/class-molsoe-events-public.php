@@ -60,13 +60,50 @@ class Molsoe_Events_Public {
 		}
 
 		$payload = $_POST['payload'];
-		$this->save_file($payload);
-		$this->send_mail($payload);
+
+		$status = 'error';
+		$errors = array();
+
+		$validationerrors = $this->validate_form($payload);
+		if (empty($validationerrors)) {
+			$this->save_file($payload);
+			$this->send_mail($payload);
+			$status = 'ok';
+		} else {
+			$errors['validation'] = $validationerrors;
+		}
 
 		$result = array(
-			'message' => var_export($payload, true)
+			'status' => $status,
+			'errors' => $errors
 		);
+		// 'errors' => var_export($validationerrors, true)
 		wp_send_json($result);
+	}
+
+	private function cleanse($data) {
+		$data = trim($data);
+		$data = stripslashes($data);
+		$data = htmlspecialchars($data);
+		return $data;
+	}
+
+	private function validate_form($formdata) {
+//		$errors = {};
+
+		foreach($formdata as $field => $tmpvalue) {
+			$value = $this->cleanse($tmpvalue);
+			switch ($field) {
+				case 'person.name':
+					if (empty($value)) {
+//						$errors[$field] => 'Skal udfyldes';
+					}
+				break;
+				default:				
+			}
+		}
+
+		return $errors;
 	}
 
 	public function init_shortcodes() {
@@ -76,9 +113,9 @@ class Molsoe_Events_Public {
 	public function resolve_shortcode($atts = [], $content = null) {
 		// set default values
 		$atts = shortcode_atts( array(
-			'view'     => 'registration',
-			'id'  => '',
-			'debug'	   => false,
+			'view' => 'registration',
+			'id' => '',
+			'debug' => false,
 		), $atts );
 
 		// do param testing
@@ -173,9 +210,9 @@ class Molsoe_Events_Public {
 		$content .= '  <fieldset id="paymentinfo">';
 		$content .= '    <legend>Kortoplysninger:</legend>';
 		$content .= '    <label for="payment.card-number">Kortnummer:</label><input type="text" required id="payment.card-number" name="payment.card-number" value="">';
-		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" required id="payment.card-expiry-month" name="payment.card-expiry-month" value="">';
-		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" required id="payment.card-expiry-year" name="payment.card-expiry-year" value="">';
-		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" required id="payment.card-seurity-code" name="payment.card-seurity-code" value="">';
+		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" min="1" max="12" required id="payment.card-expiry-month" name="payment.card-expiry-month" value="">';
+		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" min="0" max="99" required id="payment.card-expiry-year" name="payment.card-expiry-year" value="">';
+		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" min="0" max="999" required id="payment.card-seurity-code" name="payment.card-seurity-code" value="">';
 		$content .= '  </fieldset>';
 
 		return $content;
