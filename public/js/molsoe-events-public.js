@@ -18,10 +18,10 @@
 
 		$(mparams.formquery).find('fieldset#paymentmethod').find('input:radio[name="paymentmethod"]').change(
 			function () {
-			if (this.checked && this.value == 'online') {
+			if (this.checked && this.value == 'creditcard') {
 				$(mparams.formquery).find('fieldset#paymentinfo').fadeIn("fast");		
 			}
-			if (this.checked && this.value != 'online') {
+			if (this.checked && this.value != 'creditcard') {
 				$(mparams.formquery).find('fieldset#paymentinfo').fadeOut("fast");		
 			}
 		});

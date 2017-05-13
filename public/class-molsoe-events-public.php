@@ -95,6 +95,10 @@ class Molsoe_Events_Public {
 	private function validate_form($formdata) {
 		$gump = new GUMP();
 
+		// prevalidation ti cater for different payment methods
+		$creditcard = strcmp($formdata['paymentmethod'], 'creditcard') == 0;
+var_export($formdata, true);
+
 		// geometry rules
 		$gump->validation_rules(array(
 			'event.name' => 'required',
@@ -110,11 +114,11 @@ class Molsoe_Events_Public {
 			'person.city' => 'required',
 			'person.phone' => 'required',
 			'person.email' => 'required|valid_email',
-			'paymentmethod' => 'required',
-			'payment.card-number' => 'required|valid_cc',
-			'payment.card-expiry-month' => 'required|integer|min_numeric,0|max_numeric,12',
-			'payment.card-expiry-year' => 'required|integer|min_numeric,0|max_numeric,99',
-			'payment.card-seurity-code' => 'required|integer|min_numeric,0|max_numeric,999',
+			'paymentmethod' => 'required|contains, creditcard invoice',
+			'payment.card-number' => ($creditcard ? 'required|' : '') . 'valid_cc',
+			'payment.card-expiry-month' => ($creditcard ? 'required|' : '') . 'integer|min_numeric,0|max_numeric,12',
+			'payment.card-expiry-year' => ($creditcard ? 'required|' : '') . 'integer|min_numeric,0|max_numeric,2050',
+			'payment.card-seurity-code' => ($creditcard ? 'required|' : '') . 'integer|min_numeric,0|max_numeric,999',
 			'conditions.agreed' => 'required|boolean',
 		));
 
@@ -134,7 +138,7 @@ class Molsoe_Events_Public {
 			'person.phone' => 'trim|sanitize_string',
 			'person.email' => 'trim|sanitize_email',
 			'paymentmethod.invoice' => 'trim|sanitize_string',
-			'paymentmethod.online' => 'trim|sanitize_string',
+			'paymentmethod.creditcard' => 'trim|sanitize_string',
 			'payment.card-number' => 'trim|sanitize_string',
 			'payment.card-expiry-month' => 'trim|sanitize_numbers',
 			'payment.card-expiry-year' => 'trim|sanitize_numbers',
@@ -225,14 +229,14 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="person">';
 		$content .= '    <legend>Person detaljer:</legend>';
-		$content .= '    <label for="person.name">Navn:</label><input type="text" id="person.name" name="person.name" value="">';
-		$content .= '    <label for="person.position">Stilling:</label><input type="text" id="person.position" name="person.position" value="">';
-		$content .= '    <label for="person.company">Firma:</label><input type="text" id="person.company" name="person.company" value="">';
-		$content .= '    <label for="person.address">Adresse:</label><input type="text" id="person.address" name="person.address" value="">';
-		$content .= '    <label for="person.postalcode">Postnummer:</label><input type="text" id="person.postalcode" name="person.postalcode" value="">';
-		$content .= '    <label for="person.city">By:</label><input type="text" id="person.city" name="person.city" value="">';
-		$content .= '    <label for="person.phone">Tlf:</label><input type="tel" id="person.phone" name="person.phone" value="">';
-		$content .= '    <label for="person.email">Mail:</label><input type="email" id="person.email" name="person.email" value="">';
+		$content .= '    <label for="person.name">Navn:</label><input type="text" id="person.name" name="person.name" value="" autocomplete="name">';
+		$content .= '    <label for="person.position">Stilling:</label><input type="text" id="person.position" name="person.position" value="" autocomplete="organization-title">';
+		$content .= '    <label for="person.company">Firma:</label><input type="text" id="person.company" name="person.company" value="" autocomplete="organization">';
+		$content .= '    <label for="person.address">Adresse:</label><input type="text" id="person.address" name="person.address" value="" autocomplete="street-address">';
+		$content .= '    <label for="person.postalcode">Postnummer:</label><input type="text" id="person.postalcode" name="person.postalcode" value="" autocomplete="postal-code">';
+		$content .= '    <label for="person.city">By:</label><input type="text" id="person.city" name="person.city" value="" autocomplete="address-level2">';
+		$content .= '    <label for="person.phone">Tlf:</label><input type="tel" id="person.phone" name="person.phone" value="" autocomplete="tel">';
+		$content .= '    <label for="person.email">Mail:</label><input type="email" id="person.email" name="person.email" value="" autocomplete="email">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -244,7 +248,7 @@ class Molsoe_Events_Public {
 		$content .= '  <fieldset id="paymentmethod">';
 		$content .= '    <legend>Betalingsmetode:</legend>';
 		$content .= '    <label for="paymentmethod.invoice">Faktura:</label><input type="radio" name="paymentmethod" id="paymentmethod.invoice" value="invoice">';
-		$content .= '    <label for="paymentmethod.online">Online kortbetaling</label><input type="radio" name="paymentmethod" id="paymentmethod.online" value="online">';
+		$content .= '    <label for="paymentmethod.creditcard">Online kortbetaling</label><input type="radio" name="paymentmethod" id="paymentmethod.creditcard" value="creditcard">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -255,10 +259,10 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="paymentinfo">';
 		$content .= '    <legend>Kortoplysninger:</legend>';
-		$content .= '    <label for="payment.card-number">Kortnummer:</label><input type="text" id="payment.card-number" name="payment.card-number" value="">';
-		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" id="payment.card-expiry-month" name="payment.card-expiry-month" value="">';
-		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" id="payment.card-expiry-year" name="payment.card-expiry-year" value="">';
-		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" id="payment.card-seurity-code" name="payment.card-seurity-code" value="">';
+		$content .= '    <label for="payment.card-number">Kortnummer:</label><input type="text" id="payment.card-number" name="payment.card-number" value="" autocomplete="cc-number">';
+		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" id="payment.card-expiry-month" name="payment.card-expiry-month" value=""autocomplete="cc-exp-month">';
+		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" id="payment.card-expiry-year" name="payment.card-expiry-year" value=""autocomplete="cc-exp-year">';
+		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" id="payment.card-seurity-code" name="payment.card-seurity-code" value=""autocomplete="cc-csc">';
 		$content .= '  </fieldset>';
 
 		return $content;
