@@ -6,6 +6,9 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  */
+
+require plugin_dir_path( __DIR__ ) . "lib/GUMP/gump.class.php";
+
 class Molsoe_Events_Public {
 
 	const AJAX_SECRET = 'Yertle the Turtle';
@@ -39,7 +42,7 @@ class Molsoe_Events_Public {
 	public function send_mail($payload) {
 		$subject = 'Course Booking';
 
-		$body = '<h1>Booking: ' . $payload['course'] . '</h1>';
+		$body = '<h1>Booking: ' . $payload['event.name'] . '</h1>';
 		$body .= '<p>' . var_export($payload, true) . '</p>';
 
 		$headers = array('Content-Type: text/html; charset=UTF-8');
@@ -64,13 +67,15 @@ class Molsoe_Events_Public {
 		$status = 'error';
 		$errors = array();
 
-		$validationerrors = $this->validate_form($payload);
-		if (empty($validationerrors)) {
+		$validationresult = $this->validate_form($payload);
+		error_log(var_export($validationresult, true));
+		if ($validationresult['status'] == true) {
 			$this->save_file($payload);
 			$this->send_mail($payload);
 			$status = 'ok';
 		} else {
-			$errors['validation'] = $validationerrors;
+			$status = 'validation_error';
+			$errors = $validationresult['errors'];
 		}
 
 		$result = array(
@@ -89,21 +94,30 @@ class Molsoe_Events_Public {
 	}
 
 	private function validate_form($formdata) {
-//		$errors = {};
+		$gump = new GUMP();
 
-		foreach($formdata as $field => $tmpvalue) {
-			$value = $this->cleanse($tmpvalue);
-			switch ($field) {
-				case 'person.name':
-					if (empty($value)) {
-//						$errors[$field] => 'Skal udfyldes';
-					}
-				break;
-				default:				
-			}
-		}
+		// geometry rules
+		$gump->validation_rules(array(
+			'person.name' => 'required|alpha_numeric|max_len,100|min_len,2',
+			'person.email'       => 'required|valid_email',
+		));
 
-		return $errors;
+		// preprocessing rules
+		$gump->filter_rules(array(
+			'person.name' 	=> 'trim|sanitize_string',
+			'person.email'  => 'trim|sanitize_email',
+		));
+
+		// validate
+		$validateddata = $gump->run($formdata);
+		$errors = $gump->get_errors_array();
+
+		$validationresult = array(
+			'status' => !($validateddata === false),
+			'validateddata' => ($validateddata === false) ? array() : $validateddata,
+			'errors' => $errors
+		);
+		return $validationresult;
 	}
 
 	public function init_shortcodes() {
@@ -186,7 +200,7 @@ class Molsoe_Events_Public {
 		$content .= '    <label for="person.postalcode">Postnummer:</label><input type="text" required id="person.postalcode" name="person.postalcode" value="">';
 		$content .= '    <label for="person.city">By:</label><input type="text" required id="person.city" name="person.city" value="">';
 		$content .= '    <label for="person.phone">Tlf:</label><input type="tel" required id="person.phone" name="person.phone" value="">';
-		$content .= '    <label for="person.mail">Mail:</label><input type="email" required id="person.mail" name="person.mail" value="">';
+		$content .= '    <label for="person.email">Mail:</label><input type="email" required id="person.email" name="person.email" value="">';
 		$content .= '  </fieldset>';
 
 		return $content;

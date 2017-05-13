@@ -40,9 +40,6 @@
 		event.preventDefault(); // stop form from submitting normally
 
 		var form = $(mparams.formquery);
-		//form.find('.submit').val('Working...');
-		//form[0].checkValidity();
-
 		var formdata = getFormData(form);
 		var data = {
 			action: 'receive_form',
@@ -51,16 +48,41 @@
 		};
 
 		$.post(mparams.ajaxurl, data, function(response) {
-			if (response.status == 'ok') {
+			if (response.status === 'ok') {
+				clearFormErrors(form);
 				alert('All good: (' + JSON.stringify(response) + ')');
+			} else if (response.status == 'validation_error') {
+				displayFormErrors(form, response['errors'])
 			} else {
-				alert('Error: (' + JSON.stringify(response) + ')');
+				alert('Server reported error: (' + JSON.stringify(response) + ')');				
 			}
 		});
 	}
 
-	function getFormData($form){
-		var unindexed_array = $form.serializeArray();
+	function clearFormErrors(form) {
+		displayFormErrors(form, {});
+	}
+
+	function displayFormErrors(form, errors) {
+		form.find('label').each(function(ix, label){
+			if (!label.title) {
+				// use title to store original label text 
+				label.title = label.textContent;
+			}
+			
+			if (!(typeof errors[label.htmlFor] === 'undefined')) {
+				$(label).text(label.title + ' (' + errors[label.htmlFor] + ')');
+				$(label).addClass('molsoe-events-invalid');
+				$(label).focus();
+			} else {
+				$(label).text(label.title);
+				$(label).removeClass('molsoe-events-invalid');
+			}
+		});
+	}
+
+	function getFormData(form){
+		var unindexed_array = form.serializeArray();
 		var indexed_array = {};
 
 		$.map(unindexed_array, function(n, i){
