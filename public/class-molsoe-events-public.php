@@ -68,7 +68,6 @@ class Molsoe_Events_Public {
 		$errors = array();
 
 		$validationresult = $this->validate_form($payload);
-		error_log(var_export($validationresult, true));
 		if ($validationresult['status'] == true) {
 			$this->save_file($payload);
 			$this->send_mail($payload);
@@ -98,14 +97,49 @@ class Molsoe_Events_Public {
 
 		// geometry rules
 		$gump->validation_rules(array(
-			'person.name' => 'required|alpha_numeric|max_len,100|min_len,2',
-			'person.email'       => 'required|valid_email',
+			'event.name' => 'required',
+			'event.duration' => 'required',
+			'event.date' => 'required',
+			'event.place' => 'required',
+			'event.cost' => 'required',
+			'person.name' => 'required|valid_name',
+			'person.position' => 'required',
+			'person.company' => 'required',
+			'person.address' => 'required|street_address',
+			'person.postalcode' => 'required',
+			'person.city' => 'required',
+			'person.phone' => 'required',
+			'person.email' => 'required|valid_email',
+			'paymentmethod' => 'required',
+			'payment.card-number' => 'required|valid_cc',
+			'payment.card-expiry-month' => 'required|integer|min_numeric,0|max_numeric,12',
+			'payment.card-expiry-year' => 'required|integer|min_numeric,0|max_numeric,99',
+			'payment.card-seurity-code' => 'required|integer|min_numeric,0|max_numeric,999',
+			'conditions.agreed' => 'required|boolean',
 		));
 
 		// preprocessing rules
 		$gump->filter_rules(array(
-			'person.name' 	=> 'trim|sanitize_string',
-			'person.email'  => 'trim|sanitize_email',
+			'event.name' => 'trim|sanitize_string',
+			'event.duration' => 'trim|sanitize_string',
+			'event.date' => 'trim|sanitize_string',
+			'event.place' => 'trim|sanitize_string',
+			'event.cost' => 'trim|sanitize_string',
+			'person.name' => 'trim|sanitize_string',
+			'person.position' => 'trim|sanitize_string',
+			'person.company' => 'trim|sanitize_string',
+			'person.address' => 'trim|sanitize_string',
+			'person.postalcode' => 'trim|sanitize_string',
+			'person.city' => 'trim|sanitize_string',
+			'person.phone' => 'trim|sanitize_string',
+			'person.email' => 'trim|sanitize_email',
+			'paymentmethod.invoice' => 'trim|sanitize_string',
+			'paymentmethod.online' => 'trim|sanitize_string',
+			'payment.card-number' => 'trim|sanitize_string',
+			'payment.card-expiry-month' => 'trim|sanitize_numbers',
+			'payment.card-expiry-year' => 'trim|sanitize_numbers',
+			'payment.card-seurity-code' => 'trim|sanitize_numbers',
+			'conditions.agreed' => 'trim',
 		));
 
 		// validate
@@ -161,10 +195,8 @@ class Molsoe_Events_Public {
 		$content .= $this->get_person_form_fields();
 		$content .= $this->get_payment_method_form_fields();
 		$content .= $this->get_payment_info_form_fields();
+		$content .= $this->get_conditions_form_fields();
 
-		$content .= '    <hr>';
-
-		$content .= '    <input type="checkbox" required name="conditions" value="accepted">Jeg har læst og accepterer betingelserne<br>';
 		$content .= '    <input type="submit" value="Submit">';
 
 		$content .= '  </form>';
@@ -193,14 +225,14 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="person">';
 		$content .= '    <legend>Person detaljer:</legend>';
-		$content .= '    <label for="person.name">Navn:</label><input type="text" required id="person.name" name="person.name" value="">';
-		$content .= '    <label for="person.position">Stilling:</label><input type="text" required id="person.position" name="person.position" value="">';
-		$content .= '    <label for="person.company">Firma:</label><input type="text" required id="person.company" name="person.company" value="">';
-		$content .= '    <label for="person.address">Adresse:</label><input type="text" required id="person.address" name="person.address" value="">';
-		$content .= '    <label for="person.postalcode">Postnummer:</label><input type="text" required id="person.postalcode" name="person.postalcode" value="">';
-		$content .= '    <label for="person.city">By:</label><input type="text" required id="person.city" name="person.city" value="">';
-		$content .= '    <label for="person.phone">Tlf:</label><input type="tel" required id="person.phone" name="person.phone" value="">';
-		$content .= '    <label for="person.email">Mail:</label><input type="email" required id="person.email" name="person.email" value="">';
+		$content .= '    <label for="person.name">Navn:</label><input type="text" id="person.name" name="person.name" value="">';
+		$content .= '    <label for="person.position">Stilling:</label><input type="text" id="person.position" name="person.position" value="">';
+		$content .= '    <label for="person.company">Firma:</label><input type="text" id="person.company" name="person.company" value="">';
+		$content .= '    <label for="person.address">Adresse:</label><input type="text" id="person.address" name="person.address" value="">';
+		$content .= '    <label for="person.postalcode">Postnummer:</label><input type="text" id="person.postalcode" name="person.postalcode" value="">';
+		$content .= '    <label for="person.city">By:</label><input type="text" id="person.city" name="person.city" value="">';
+		$content .= '    <label for="person.phone">Tlf:</label><input type="tel" id="person.phone" name="person.phone" value="">';
+		$content .= '    <label for="person.email">Mail:</label><input type="email" id="person.email" name="person.email" value="">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -211,8 +243,8 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="paymentmethod">';
 		$content .= '    <legend>Betalingsmetode:</legend>';
-		$content .= '    <label for="paymentmethod.invoice">Faktura:</label><input type="radio" required name="paymentmethod" id="paymentmethod.invoice" value="invoice">';
-		$content .= '    <label for="paymentmethod.online">Online kortbetaling</label><input type="radio" required name="paymentmethod" id="paymentmethod.online" value="online">';
+		$content .= '    <label for="paymentmethod.invoice">Faktura:</label><input type="radio" name="paymentmethod" id="paymentmethod.invoice" value="invoice">';
+		$content .= '    <label for="paymentmethod.online">Online kortbetaling</label><input type="radio" name="paymentmethod" id="paymentmethod.online" value="online">';
 		$content .= '  </fieldset>';
 
 		return $content;
@@ -223,10 +255,21 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="paymentinfo">';
 		$content .= '    <legend>Kortoplysninger:</legend>';
-		$content .= '    <label for="payment.card-number">Kortnummer:</label><input type="text" required id="payment.card-number" name="payment.card-number" value="">';
-		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" min="1" max="12" required id="payment.card-expiry-month" name="payment.card-expiry-month" value="">';
-		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" min="0" max="99" required id="payment.card-expiry-year" name="payment.card-expiry-year" value="">';
-		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" min="0" max="999" required id="payment.card-seurity-code" name="payment.card-seurity-code" value="">';
+		$content .= '    <label for="payment.card-number">Kortnummer:</label><input type="text" id="payment.card-number" name="payment.card-number" value="">';
+		$content .= '    <label for="payment.card-expiry-month">Udløbsmåned:</label><input type="number" id="payment.card-expiry-month" name="payment.card-expiry-month" value="">';
+		$content .= '    <label for="payment.card-expiry-year">Udløbsår:</label><input type="number" id="payment.card-expiry-year" name="payment.card-expiry-year" value="">';
+		$content .= '    <label for="payment.card-seurity-code">Sikkerhedskode:</label><input type="number" id="payment.card-seurity-code" name="payment.card-seurity-code" value="">';
+		$content .= '  </fieldset>';
+
+		return $content;
+	}
+
+	private function get_conditions_form_fields() {
+		$content = '';
+
+		$content .= '  <fieldset id="conditions">';
+		$content .= '    <legend>Betingelserne:</legend>';
+		$content .= '    <label for="conditions.agreed">Jeg har læst og accepterer betingelserne:</label><input type="checkbox" id="conditions.agreed" name="conditions.agreed" value="true">';
 		$content .= '  </fieldset>';
 
 		return $content;
