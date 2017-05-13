@@ -4,6 +4,5 @@
  */
 
  .molsoe-events-invalid {
-	 background-color: red;
-	 border: 1px solid red; 
+	 color: red;
  }
