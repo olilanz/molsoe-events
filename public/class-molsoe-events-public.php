@@ -8,6 +8,7 @@
  */
 
 require plugin_dir_path( __DIR__ ) . "lib/GUMP/gump.class.php";
+require plugin_dir_path( __DIR__ ) . "lib/PHPMailer/PHPMailerAutoload.php";
 
 class Molsoe_Events_Public {
 
@@ -39,7 +40,27 @@ class Molsoe_Events_Public {
 		));
 	}
 
-	public function send_mail($payload) {
+	public function send_confirmation_mail($payload) {
+		$subject = 'Tilmelding til ' . $payload['event.name'];
+
+		$body = '<p>';
+		$body .= 'Kære ' . $payload['person.name'] . ',';
+		$body .= 'Mange tak for din tilmelding til ' . $payload['event.name'] . ' den ' . $payload['person.date'] . '.';
+		$body .= 'Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.';
+		$body .= 'De bedste hilsner';
+		$body .= 'Molsøe';
+		$body .= 'Egedal Centret 69, 1';
+		$body .= '3660 Stenløse';
+		$body .= 'Tlf: 28 59 69 20 eller 22 61 58 79';
+		$body .= 'E-mail: info@molsoe.dk';		
+		$body .= '</p>';
+
+		$headers = array('Content-Type: text/html; charset=UTF-8');
+
+		wp_mail($payload['person.email'], $subject, $body, $headers);
+	}
+
+	public function send_booking_mail($payload) {
 		$subject = 'Course Booking';
 
 		$body = '<h1>Booking: ' . $payload['event.name'] . '</h1>';
@@ -47,8 +68,7 @@ class Molsoe_Events_Public {
 
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 
-		wp_mail('olilanz@mac.com', $subject, $body, $headers);
-		wp_mail('anne@annemollerup.dk', $subject, $body, $headers);
+		wp_mail('info@molsoe.dk', $subject, $body, $headers);
 	}
 
 	public function save_file($payload) {
@@ -70,7 +90,8 @@ class Molsoe_Events_Public {
 		$validationresult = $this->validate_form($payload);
 		if ($validationresult['status'] == true) {
 			$this->save_file($payload);
-			$this->send_mail($payload);
+			$this->send_confirmation_mail($payload);
+			$this->send_booking_mail($payload);
 			$status = 'ok';
 		} else {
 			$status = 'validation_error';
