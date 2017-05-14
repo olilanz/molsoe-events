@@ -8,7 +8,6 @@
  */
 
 require plugin_dir_path( __DIR__ ) . "lib/GUMP/gump.class.php";
-require plugin_dir_path( __DIR__ ) . "lib/PHPMailer/PHPMailerAutoload.php";
 
 class Molsoe_Events_Public {
 
