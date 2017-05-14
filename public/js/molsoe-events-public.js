@@ -9,13 +9,13 @@
 		$(mparams.formquery).submit(submitFormHandler);
 
 		// show form button
-		var btn = $(mparams.formbuttonquery);
-		var container = $(mparams.formcontainerquery);
-		btn.click(function() {
-			showFormHandler(container);
+		$(mparams.formbuttonquery).click(function() {
+			$(mparams.formbuttonquery).fadeOut("fast");
+			$(mparams.formquery).fadeIn("fast");
 			return false;
 		});
 
+		// handle switching between payment methods
 		$(mparams.formquery).find('fieldset#paymentmethod').find('input:radio[name="paymentmethod"]').change(
 			function () {
 			if (this.checked && this.value == 'creditcard') {
@@ -30,11 +30,10 @@
 		$(mparams.formquery).hide();
 		$(mparams.formquery).find('fieldset#paymentinfo').hide();
 		$(mparams.formquery).find('fieldset#paymentmethod').find('input#paymentmethod\\.invoice').attr("checked", true);
-	});
 
-	function showFormHandler(formcontainer) {
-		$(mparams.formquery).fadeToggle("fast");
-	}
+		// hide paymentmethod for as long as credit card payment is not supported
+		$(mparams.formquery).find('fieldset#paymentmethod').hide();
+	});
 
 	function submitFormHandler(event) {
 		event.preventDefault(); // stop form from submitting normally
@@ -50,13 +49,18 @@
 		$.post(mparams.ajaxurl, data, function(response) {
 			if (response.status === 'ok') {
 				clearFormErrors(form);
-				alert('All good: (' + JSON.stringify(response) + ')');
+				//alert('All good: (' + JSON.stringify(response) + ')');
+				alert('Mange tak for din tilmelding. Du vil modtage en mail angående din tilmelding indenfor de næste par minutter.');
+				$(mparams.formquery).fadeOut("fast");
+				$(mparams.formbuttonquery).fadeIn("fast");
 			} else if (response.status == 'validation_error') {
 				displayFormErrors(form, response['errors'])
 			} else {
-				alert('Server reported error: (' + JSON.stringify(response) + ')');				
+				alert('Der er sket en fejl. Prøv igen senere, eller send en mail til booking@molsoe.dk\n\nDetaljer om fejlen: ' + JSON.stringify(response));
 			}
-		});
+		}).fail(function(response) {
+			alert('Der er sket en fejl. Prøv igen senere, eller send en mail til booking@molsoe.dk\n\nDetaljer om fejlen: ' + JSON.stringify(response));
+		});;
 	}
 
 	function clearFormErrors(form) {

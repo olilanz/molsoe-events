@@ -95,9 +95,8 @@ class Molsoe_Events_Public {
 	private function validate_form($formdata) {
 		$gump = new GUMP();
 
-		// prevalidation ti cater for different payment methods
+		// cater for different payment methods
 		$creditcard = strcmp($formdata['paymentmethod'], 'creditcard') == 0;
-var_export($formdata, true);
 
 		// geometry rules
 		$gump->validation_rules(array(
@@ -201,8 +200,7 @@ var_export($formdata, true);
 		$content .= $this->get_payment_info_form_fields();
 		$content .= $this->get_conditions_form_fields();
 
-		$content .= '    <input type="submit" value="Submit">';
-
+		$content .= '    <input type="submit" value="Tilmeld">';
 		$content .= '  </form>';
 		$content .= '</div>';
 
