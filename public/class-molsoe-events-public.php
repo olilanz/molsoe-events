@@ -42,17 +42,27 @@ class Molsoe_Events_Public {
 	public function send_confirmation_mail($payload) {
 		$subject = 'Tilmelding til ' . $payload['event.name'];
 
-		$body = '<p>';
-		$body .= 'Kære ' . $payload['person.name'] . ',';
-		$body .= 'Mange tak for din tilmelding til ' . $payload['event.name'] . ' den ' . $payload['person.date'] . '.';
-		$body .= 'Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.';
-		$body .= 'De bedste hilsner';
-		$body .= 'Molsøe';
-		$body .= 'Egedal Centret 69, 1';
-		$body .= '3660 Stenløse';
-		$body .= 'Tlf: 28 59 69 20 eller 22 61 58 79';
-		$body .= 'E-mail: info@molsoe.dk';		
-		$body .= '</p>';
+		$body = '
+		<p>
+		Kære ' . $payload["person.name"] .',
+		</p>
+		<p>
+		Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
+		Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
+		</p>
+		<p>
+		De bedste hilsner
+		</p>
+		<p>
+		Molsøe<br>
+		Egedal Centret 69, 1<br>
+		3660 Stenløse<br>
+		Tlf: 28 59 69 20 eller 22 61 58 79<br>
+		E-mail: info@molsoe.dk<br>
+		</p>
+		';
+
+		error_log($body);
 
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 
