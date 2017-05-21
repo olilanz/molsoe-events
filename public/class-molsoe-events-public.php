@@ -203,8 +203,11 @@ class Molsoe_Events_Public {
 		$view  = intval( $atts['view'] );
 		$debug = boolval( $atts['debug'] );
 		$eventid = strval( $atts['id'] );
+		if (empty($eventid)) {
+			return "<p>Molsøe Events Plug-in: Missing configuration. The parameter \"id\" was not specified.</p>";
+		}
 
-		// prepping the data
+		// loading the event data
 		$data = $this->get_data();
 		$event = array();
 		foreach ($data as $e) {
@@ -212,7 +215,11 @@ class Molsoe_Events_Public {
 				$event = $e;
 			}
 		}
+		if (empty($event)) {
+			return "<p>Molsøe Events Plug-in: Event (" . $eventid . ") not found in data file.</p>";
+		}
 
+		// build form 
 		$content = '';
 
 		if ($debug == true) {
