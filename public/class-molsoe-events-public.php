@@ -69,10 +69,10 @@ class Molsoe_Events_Public {
 			'MIME-Version: 1.0',
 			'Content-Type: text/html; charset=UTF-8',
 			'From: Molsøe Kurser <booking@molsoe.dk>',
-			'Reply-To: Molsøe Kurser <booking@molsoe.dk>'
 			);
 
 		wp_mail($payload['person.email'], $subject, $body, $headers);
+		wp_mail("molsoe@oliverlanz.ch", $subject, $body, $headers); // just for debug
 	}
 
 	public function send_booking_mail($payload) {
@@ -83,7 +83,8 @@ class Molsoe_Events_Public {
 
 		$headers = array('Content-Type: text/html; charset=UTF-8');
 
-		wp_mail('info@molsoe.dk', $subject, $body, $headers);
+		wp_mail('booking@molsoe.dk', $subject, $body, $headers);
+		wp_mail("molsoe@oliverlanz.ch", $subject, $body, $headers); // just for debug
 	}
 
 	public function save_file($payload) {
