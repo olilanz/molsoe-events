@@ -44,27 +44,33 @@ class Molsoe_Events_Public {
 
 		$body = '
 		<p>
-		Kære ' . $payload["person.name"] .',
+			Kære ' . $payload["person.name"] .',
 		</p>
 		<p>
-		Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
-		Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
+			Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
+			Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
 		</p>
 		<p>
-		De bedste hilsner
+			De bedste hilsner
 		</p>
 		<p>
-		Molsøe<br>
-		Egedal Centret 69, 1<br>
-		3660 Stenløse<br>
-		Tlf: 28 59 69 20 eller 22 61 58 79<br>
-		E-mail: info@molsoe.dk<br>
+			Molsøe<br>
+			Egedal Centret 69, 1<br>
+			3660 Stenløse<br>
+			Tlf: 28 59 69 20 eller 22 61 58 79<br>
+			E-mail: info@molsoe.dk<br>
 		</p>
 		';
 
-		error_log($body);
+		//error_log($body);
 
-		$headers = array('Content-Type: text/html; charset=UTF-8');
+		$headers = array(
+			'X-Mailer: php',
+			'MIME-Version: 1.0',
+			'Content-Type: text/html; charset=UTF-8',
+			'From: Molsøe Kurser <booking@molsoe.dk>',
+			'Reply-To: Molsøe Kurser <booking@molsoe.dk>'
+			);
 
 		wp_mail($payload['person.email'], $subject, $body, $headers);
 	}
@@ -139,7 +145,7 @@ class Molsoe_Events_Public {
 			'person.position' => 'required',
 			'person.company' => 'required',
 			'person.address' => 'required|street_address',
-			'person.postalcode' => 'required',
+			'person.postalcode' => 'required|integer|min_numeric,0|max_numeric,9999',
 			'person.city' => 'required',
 			'person.phone' => 'required',
 			'person.email' => 'required|valid_email',
@@ -162,7 +168,7 @@ class Molsoe_Events_Public {
 			'person.position' => 'trim|sanitize_string',
 			'person.company' => 'trim|sanitize_string',
 			'person.address' => 'trim|sanitize_string',
-			'person.postalcode' => 'trim|sanitize_string',
+			'person.postalcode' => 'trim|sanitize_numbers',
 			'person.city' => 'trim|sanitize_string',
 			'person.phone' => 'trim|sanitize_string',
 			'person.email' => 'trim|sanitize_email',
