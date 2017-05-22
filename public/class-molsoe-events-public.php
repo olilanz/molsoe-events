@@ -47,7 +47,7 @@ class Molsoe_Events_Public {
 			Kære ' . $payload["person.name"] .',
 		</p>
 		<p>
-			Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
+			Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.occurrence"] . '.
 			Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
 		</p>
 		<p>
