@@ -2,144 +2,194 @@
 	{
 		"id": "HR001",
 		"name": "Idéudvikling - Workshop",
-		"cost": "4.990 kr. ekskl. moms",
+		"cost": "DKK 4.990,- ekskl. moms",
 		"duration": "1 dag",
 		"occurances": [
 			{
-				"time": "31. august 2017 kl. 9-16",
-				"place": "Villa Blide Kursuscenter, Jonstrup, Ballerup"
+				"time": "28. september 2017 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "31. januar 2018 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "24. april 2018 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
 			}
+
+
 		]
 	},
 	{
 		"id": "HR002",
 		"name": "Kollegacoaching",
-		"cost": "9.600 kr. ekskl. moms",
+		"cost": "DKK 9.600,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
 				"time": "20.-21. september 2017 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
+				"place": "Bautahøj Konferencecenter, Jægerspris"
+			},
+			{
+				"time": "10.-11. januar 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
+			},
+			{
+				"time": "23.-24. maj 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
 			}
+
 		]
 	},
 	{
 		"id": "HR003",
 		"name": "Trvisel, stress og hjernen",
-		"cost": " 9.600 kr. ekskl. moms",
+		"cost": "DKK 9.600,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
-				"time": "22.-23. november 2017 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
+				"time": "22.-23. noKonferencecenter, Jægerspris"
+			},
+			{
+				"time": "11.-12. april 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
+			}
+		]
+	},
+	{
+		"id": "HR004",
+		"name": "Kend din MBTI-profil",
+		"cost": "DKK 5.300,- ekskl. moms",
+		"duration": "1 dag",
+		"occurances": [
+			{
+				"time": "27. september 2017 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
 			}
 		]
 	},
 	{
 		"id": "K001",
 		"name": "Storytelling - Workshop",
-		"cost": " 4.990 kr. ekskl. moms",
+		"cost": "DKK 4.990,- ekskl. moms",
 		"duration": "1 dag",
 		"occurances": [
 			{
 				"time": "30. november 2017 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
+				"place": "Restaurant Toldboden, Frederikssund"
+			},
+			{
+				"time": "13. marts 2018 kl. 9-16",
+				"place": "Restaurant Toldboden, Frederikssund"
 			}
 		]
 	},
 	{
 		"id": "K002",
 		"name": "Lær at navigere i en shitstorm",
-		"cost": " 9.600 kr. ekskl. moms",
+		"cost": "DKK 9.600,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
-				"time": "30.-31- august 2017 kl. 9-16",
-				"place": "Villa Blide Kursuscenter, Jonstrup, Ballerup"
+				"time": "30.-31. august 2017 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "20.-21. november 2017 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "14.-15. marts 2018 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
 			}
 		]
 	},
 	{
 		"id": "K003",
-		"name": "Kommunikation, kulturer og samarbejde",
-		"cost": " 9.600 kr. ekskl. moms",
+		"name": "Kommunikation og samarbejde",
+		"cost": "DKK 9.600,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
-				"time": "1.-2. februar 2018 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
+				"time": "7.-8. februar 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
 			}
 		]
 	},
 	{
 		"id": "K004",
 		"name": "Skriv dine business-mémoires - Workshop",
-		"cost": " 4.990 kr. ekskl. moms",
+		"cost": "DKK 4.990,- ekskl. moms",
 		"duration": "1 dag",
 		"occurances": [
 			{
 				"time": "14. juni 2018 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
+				"place": "Restaurant Toldboden, Frederikssund"
 			}
 		]
 	},
 	{
 		"id": "L001",
 		"name": "Den nye leder - ledertræningsforløb",
-		"cost": " 23.500 kr. ekskl. moms",
+		"cost": "DKK 23.500,- ekskl. moms",
 		"duration": "2x2 dage inkl. opfølgning",
 		"occurances": [
 			{
-				"time": "29-31. august 2017 kl. 9-17",
-				"place": "Villa Blide Kursuscenter, Jonstrup, Ballerup"
+				"time": "6.-7. september 2017 kl. 9-17",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "16.-17. januar 2018 kl. 9-17",
+				"place": "Kollekolle Konferencecenter, Værløse"
+			},
+			{
+				"time": "2.-3. maj 2018 kl. 9-17",
+				"place": "Kollekolle Konferencecenter, Værløse"
 			}
 		]
 	},
 	{
 		"id": "L002",
 		"name": "Den innovative leder",
-		"cost": " 10.400 kr. ekskl. moms",
+		"cost": "DKK 10.400,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
 				"time": "7.-8. november 2017 kl. 9-16",
-				"place": "Villa Blide Kursuscenter, Jonstrup, Ballerup"
+				"place": "Bautahøj Konferencecenter, Jægerspris"
+			},
+			{
+				"time": "21.-22. marts 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
 			}
 		]
 	},
 	{
 		"id": "L003",
 		"name": "Stresshåndtering og ledelse",
-		"cost": " 15.300 kr. ekskl. moms",
+		"cost": "DKK 15.300,- ekskl. moms",
 		"duration": "3 dage",
 		"occurances": [
 			{
-				"time": "16.-18. januar 2018 kl. 9-16",
-				"place": "Bautahøj Kursuscenter, Jægerspris"
-			}
-		]
-	},
-	{
-		"id": "L004",
-		"name": "MBTI og ledelse",
-		"cost": " 10.400 kr. ekskl. moms",
-		"duration": "2 dage",
-		"occurances": [
+				"time": "23.-25. januar 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
+			},
 			{
-				"time": "",
-				"place": ""
+				"time": "15.-17. maj 2018 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
 			}
 		]
 	},
 	{
 		"id": "L005",
 		"name": "Ledelse under forandring",
-		"cost": " 10.400 kr. ekskl. moms",
+		"cost": "DKK 10.400,- ekskl. moms",
 		"duration": "2 dage",
 		"occurances": [
 			{
-				"time": "",
-				"place": ""
+				"time": "25.-26. oktober 2017 kl. 9-16",
+				"place": "Kollekolle Konferencecenter, Værløse"
 			}
 		]
 	},
