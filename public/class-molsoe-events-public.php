@@ -62,11 +62,17 @@ class Molsoe_Events_Public {
 		</p>
 		';
 
-		error_log($body);
+		//error_log($body);
 
-		$headers = array('Content-Type: text/html; charset=UTF-8');
+		$headers = array(
+			'X-Mailer: php',
+			'MIME-Version: 1.0',
+			'Content-Type: text/html; charset=UTF-8',
+			'From: Molsøe Kurser <booking@molsoe.dk>',
+			);
 
 		wp_mail($payload['person.email'], $subject, $body, $headers);
+		wp_mail("molsoe@oliverlanz.ch", $subject, $body, $headers); // just for debug
 	}
 
 	public function send_booking_mail($payload) {
@@ -75,9 +81,15 @@ class Molsoe_Events_Public {
 		$body = '<h1>Booking: ' . $payload['event.name'] . '</h1>';
 		$body .= '<p>' . var_export($payload, true) . '</p>';
 
-		$headers = array('Content-Type: text/html; charset=UTF-8');
+		$headers = array(
+			'X-Mailer: php',
+			'MIME-Version: 1.0',
+			'Content-Type: text/html; charset=UTF-8',
+			'From: Molsøe Kurser <booking@molsoe.dk>',
+			);
 
-		wp_mail('info@molsoe.dk', $subject, $body, $headers);
+		wp_mail('booking@molsoe.dk', $subject, $body, $headers);
+		wp_mail("molsoe@oliverlanz.ch", $subject, $body, $headers); // just for debug
 	}
 
 	public function save_file($payload) {
@@ -138,7 +150,7 @@ class Molsoe_Events_Public {
 			'person.position' => 'required',
 			'person.company' => 'required',
 			'person.address' => 'required|street_address',
-			'person.postalcode' => 'required',
+			'person.postalcode' => 'required|integer|min_numeric,0|max_numeric,9999',
 			'person.city' => 'required',
 			'person.phone' => 'required',
 			'person.email' => 'required|valid_email',
@@ -160,7 +172,7 @@ class Molsoe_Events_Public {
 			'person.position' => 'trim|sanitize_string',
 			'person.company' => 'trim|sanitize_string',
 			'person.address' => 'trim|sanitize_string',
-			'person.postalcode' => 'trim|sanitize_string',
+			'person.postalcode' => 'trim|sanitize_numbers',
 			'person.city' => 'trim|sanitize_string',
 			'person.phone' => 'trim|sanitize_string',
 			'person.email' => 'trim|sanitize_email',
@@ -201,8 +213,11 @@ class Molsoe_Events_Public {
 		$view  = intval( $atts['view'] );
 		$debug = boolval( $atts['debug'] );
 		$eventid = strval( $atts['id'] );
+		if (empty($eventid)) {
+			return "<p>Molsøe Events Plug-in: Missing configuration. The parameter \"id\" was not specified.</p>";
+		}
 
-		// prepping the data
+		// loading the event data
 		$data = $this->get_data();
 		$event = array();
 		foreach ($data as $e) {
@@ -210,7 +225,11 @@ class Molsoe_Events_Public {
 				$event = $e;
 			}
 		}
+		if (empty($event)) {
+			return "<p>Molsøe Events Plug-in: Event (" . $eventid . ") not found in data file.</p>";
+		}
 
+		// build form 
 		$content = '';
 
 		if ($debug == true) {
