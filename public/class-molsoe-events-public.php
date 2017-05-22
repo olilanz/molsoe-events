@@ -44,21 +44,21 @@ class Molsoe_Events_Public {
 
 		$body = '
 		<p>
-		Kære ' . $payload["person.name"] .',
+			Kære ' . $payload["person.name"] .',
 		</p>
 		<p>
-		Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
-		Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
+			Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.date"] . '.
+			Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
 		</p>
 		<p>
-		De bedste hilsner
+			De bedste hilsner
 		</p>
 		<p>
-		Molsøe<br>
-		Egedal Centret 69, 1<br>
-		3660 Stenløse<br>
-		Tlf: 28 59 69 20 eller 22 61 58 79<br>
-		E-mail: info@molsoe.dk<br>
+			Molsøe<br>
+			Egedal Centret 69, 1<br>
+			3660 Stenløse<br>
+			Tlf: 28 59 69 20 eller 22 61 58 79<br>
+			E-mail: info@molsoe.dk<br>
 		</p>
 		';
 
@@ -132,8 +132,7 @@ class Molsoe_Events_Public {
 		$gump->validation_rules(array(
 			'event.name' => 'required',
 			'event.duration' => 'required',
-			'event.date' => 'required',
-			'event.place' => 'required',
+			'event.occurrence' => 'required',
 			'event.cost' => 'required',
 			'person.name' => 'required|valid_name',
 			'person.position' => 'required',
@@ -155,8 +154,7 @@ class Molsoe_Events_Public {
 		$gump->filter_rules(array(
 			'event.name' => 'trim|sanitize_string',
 			'event.duration' => 'trim|sanitize_string',
-			'event.date' => 'trim|sanitize_string',
-			'event.place' => 'trim|sanitize_string',
+			'event.occurrence' => 'trim|sanitize_string',
 			'event.cost' => 'trim|sanitize_string',
 			'person.name' => 'trim|sanitize_string',
 			'person.position' => 'trim|sanitize_string',
@@ -244,9 +242,18 @@ class Molsoe_Events_Public {
 		$content .= '    <legend>Kursus detaljer:</legend>';
 		$content .= '    <label for="event.name">Kursus:</label><input type="text" id="event.name" name="event.name" readonly value="' . $event->name . '">';
 		$content .= '    <label for="event.duration">Varighed:</label><input type="text" id="event.duration" name="event.duration" readonly value="' . $event->duration . '">';
-		$content .= '    <label for="event.date">Dato:</label><input type="text" id="event.date" name="event.date" readonly value="' . $event->time . '">';
-		$content .= '    <label for="event.place">Sted:</label><input type="text" id="event.place" name="event.place" readonly value="' . $event->place . '">';
 		$content .= '    <label for="event.cost">Pris:</label><input type="text" id="event.cost" name="event.cost" readonly value="' . $event->cost . '">';
+
+		if (!empty($event->occurances)) {
+			$content .= '    <label for="event.occurrence">Dato/sted:</label>';
+			$content .= '    <select id="event.occurrence" name="event.occurrence" readonly>';
+			$content .= '    	<option value=""></option>';
+			foreach($event->occurances as $o) {
+				$content .= '    	<option value="' . $o->time . ', ' . $o->place . '">' . $o->time . ', ' . $o->place . '</option>';
+			}
+			$content .= '    </select>';
+		}
+
 		$content .= '  </fieldset>';
 
 		return $content;
