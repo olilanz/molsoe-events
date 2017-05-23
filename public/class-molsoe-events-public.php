@@ -48,16 +48,16 @@ class Molsoe_Events_Public {
 		</p>
 		<p>
 			Mange tak for din tilmelding til ' . $payload["event.name"] . ' den ' . $payload["event.occurrence"] . '.
-			Du vil modtage en faktura per email snarest. Din plads på kurset er bekræftet når vi har registreret din betaling.
+			Du vil modtage en faktura pr. e-mail snarest. Din plads på kurset er bekræftet, når vi har registreret din betaling.
 		</p>
 		<p>
 			De bedste hilsner
 		</p>
 		<p>
 			Molsøe<br>
-			Egedal Centret 69, 1<br>
+			Egedal Centret 69, 1.<br>
 			3660 Stenløse<br>
-			Tlf: 28 59 69 20 eller 22 61 58 79<br>
+			Tlf.: 28 59 69 20 eller 22 61 58 79<br>
 			E-mail: info@molsoe.dk<br>
 		</p>
 		';
