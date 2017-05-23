@@ -49,7 +49,8 @@
 		"duration": "2 dage",
 		"occurances": [
 			{
-				"time": "22.-23. noKonferencecenter, Jægerspris"
+				"time": "22.-23. november 2017 kl. 9-16",
+				"place": "Bautahøj Konferencecenter, Jægerspris"
 			},
 			{
 				"time": "11.-12. april 2018 kl. 9-16",
@@ -60,12 +61,12 @@
 	{
 		"id": "HR004",
 		"name": "Kend din MBTI-profil",
-		"cost": "DKK 5.300,- ekskl. moms",
+		"cost": "DKK 7.500,- ekskl. moms",
 		"duration": "1 dag",
 		"occurances": [
 			{
 				"time": "27. september 2017 kl. 9-16",
-				"place": "Kollekolle Konferencecenter, Værløse"
+				"place": "Toldbodens Konferencelokale, Frederikssund"
 			}
 		]
 	},
@@ -77,11 +78,11 @@
 		"occurances": [
 			{
 				"time": "30. november 2017 kl. 9-16",
-				"place": "Restaurant Toldboden, Frederikssund"
+				"place": "Toldbodens Konferencelokale, Frederikssund"
 			},
 			{
 				"time": "13. marts 2018 kl. 9-16",
-				"place": "Restaurant Toldboden, Frederikssund"
+				"place": "Toldbodens Konferencelokale, Frederikssund"
 			}
 		]
 	},
@@ -125,7 +126,7 @@
 		"occurances": [
 			{
 				"time": "14. juni 2018 kl. 9-16",
-				"place": "Restaurant Toldboden, Frederikssund"
+				"place": "Toldbodens Konferencelokale, Frederikssund"
 			}
 		]
 	},
@@ -172,11 +173,11 @@
 		"duration": "3 dage",
 		"occurances": [
 			{
-				"time": "23.-25. januar 2018 kl. 9-16",
+				"time": "24.-25. januar 2018 kl. 9-16",
 				"place": "Bautahøj Konferencecenter, Jægerspris"
 			},
 			{
-				"time": "15.-17. maj 2018 kl. 9-16",
+				"time": "15.-16. maj 2018 kl. 9-16",
 				"place": "Bautahøj Konferencecenter, Jægerspris"
 			}
 		]
