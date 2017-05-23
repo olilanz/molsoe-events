@@ -327,7 +327,7 @@ class Molsoe_Events_Public {
 
 		$content .= '  <fieldset id="conditions">';
 		$content .= '    <legend>Betingelserne:</legend>';
-		$content .= '    <label for="conditions.agreed">Jeg har læst og accepterer betingelserne:</label><input type="checkbox" id="conditions.agreed" name="conditions.agreed" value="true">';
+		$content .= '    <label for="conditions.agreed">Jeg har læst og accepterer <a href="handelsbetingelser" target="_new">betingelserne</a>:</label><input type="checkbox" id="conditions.agreed" name="conditions.agreed" value="true">';
 		$content .= '  </fieldset>';
 
 		return $content;
