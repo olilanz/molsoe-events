@@ -9,7 +9,7 @@
 - License: GPLv2 or later
 - License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Event booking plug-in for molsø.dk. It is custom built as a learning experience, and because no othe rplug.in seemed to 
+Event booking plug-in for molsø.dk. It is custom built as a learning experience, and because no other plug-in seemed to 
 provide the sought out-of-the-box experience. 
 
 # Description #
